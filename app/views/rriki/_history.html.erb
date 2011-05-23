@@ -1,0 +1,13 @@
+<%# This partial gets sent a variable called 'selected' that indicates which
+history item was selected %>
+<% selected = nil unless defined?selected %> 
+<%= select('history', 'sel', history_list, {:selected => selected}, {:class => 'historyselect'}) %> 
+<%= link_to_remote 'x',
+      :url => {:controller => 'rriki',  
+               :action => 'clear_history'},
+      :html => {:title => 'Clear history'},
+      :method => :get %>
+<%= observe_field 'history_sel',
+    :url => {:controller => 'rriki',
+             :action => 'select_item_in_history'},
+    :with => 'history_sel' %> 

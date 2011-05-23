@@ -1,0 +1,16 @@
+<table width=100%>
+  <tr>
+  </tr>
+
+<% for note in notes do %>
+  <tr id='<%= "div-note#{note.id}" %>'>
+  	<td id='<%= "title-note#{note.id}" %>'>
+  		<b><%= link_to_remote note.date.strftime("%x"), 
+                  :url => {:controller => 'notes', 
+                           :action => 'show', :id => note, 
+                           :divid => 'item-div'},
+                  :html => {:title => "Show note:#{note.id}"},
+                  :method => :get %></b> <%= note.title %></td>
+  </tr>
+<% end %>
+</table>

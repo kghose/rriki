@@ -1,0 +1,96 @@
+<%
+#   RRiki is a notes and citations management software
+#   Copyright (C) 2006 - Kaushik Ghose - kaushik.ghose@gmail.com
+# 
+#    This file is part of RRiki.
+#
+#    RRiki is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    RRiki is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with RRiki; if not, write to the Free Software
+#    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+%>
+
+<!--
+You are running RRiki <%= RRIKI_VERSION %> (<%= RRIKI_RELEASE_DATE %>) using Ruby version <b><%= RUBY_VERSION %></b>,
+Rails version <b><%= Rails::VERSION::STRING %></b>
+on a <b><%= RUBY_PLATFORM %></b> platform,
+with a <b><%=h Note.connection.adapter_name() %></b> database backend.
+-->
+<div style ="background:lightyellow;padding:.5em;">
+<%= render :partial => 'rriki/info' %>
+</div>
+<a href="#about">About</a>
+<h2>Help</h2>
+Most operations are self explanatory, especially with the help in the popup text.
+Only the non-intuitive operations are described here:
+
+<h3>Moving (reparenting) a keyword</h3>
+Click on a keyword in the left pane to list its linked items in the middle pane. 
+In the middle pane go to the keyword path printed at the top of the pane and 
+grab the leaf (the part in bold) and drop it onto a new keyword on the left pane.
+You may also drop it onto 'root' to make the keyword a root keyword.
+
+<h3>Links between items</h3>
+In the notes entry of a note or source you can make links to another note or
+source. To make a link to another note, in the text field type
+<code>[text to link][note:XXX]</code> where XXX is the note id. To make a link
+to another source type <code>[source:citeykey]</code> where citekey is the
+citekey of the source, like savitzky1964
+
+<h3>Math text</h3>
+RRiki uses Peter Jipsen's <a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a> to convert latex strings to equations. Type 
+"amath" in a field to activate the relevant javascript so that your text will
+be displayed as math when you view it.
+
+<a name="about"></a>
+<h2>Description</h2>
+<p>RRiki is a program to store and organize information for, primarily, academic research. Such information includes citations for sources (articles,books etc), notes on sources and general notes. The latest version of RRiki can be downloaded from <a href="http://rriki.sf.net">rriki.sourceforge.net</a></p>
+
+<h2>Author</h2>
+<p>RRiki was developed by <a href="mailto:kghose@sf.net">Kaushik Ghose</a> who used it to procrastinate during his <a href="http://hdl.handle.net/1903/3397">PhD thesis</a> and even during his postdoc(s). Admittedly, RRiki and its precursor, <a href="http://r-a.sf.net">RA</a>, were vital for the writing of the thesis and subsequent papers.</p>
+
+<h2>Logo</h2>
+<%= image_tag "rriki-logo.png", :alt=>"RRiki Logo", :style=>"height: 100px; width: 100px;float:right;", :title=>"RRiki logo, derived from the Bengali letter 'rri'"%>
+
+If you were curious, the logo for RRiki derives from the <a href="http://en.wikipedia.org/wiki/Bengali_language">Bengali</a> letter for the sound 'rri'. The red square is for Ruby - the language in which Rails has been written. Rails made everything so simple.
+
+<h2>License</h2>
+<p>RRiki is free, <a href="http://en.wikipedia.org/wiki/Open-source_software">open source</a> software and is released under the terms of the <a href="http://www.gnu.org/copyleft/gpl.html">GNU GPL</a> license (<a href="/rriki/license">local copy</a>) with the hope that it may be useful to other researchers.</p>
+
+<p>
+Attention is drawn to the clause of the license that says
+</p>
+<h3>NO WARRANTY</h3>
+
+<p>
+11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+</p>
+<p>
+12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. 
+</p>
+
+
+<h2>Acknowledgments</h2>
+<p>RRiki is best used with a standards compliant browser. RRiki has been developed and tested with the exemplary <a href="http://www.mozilla.com/firefox/">Firefox browser</a>. Using the latest version is always reccomended.</p>
+
+<p>RRiki depends on, is the better for, and was easy to write because of these fine pieces of open source software:
+
+<ul>
+	<li><a href="http://www.ruby-lang.org/en/">Ruby</a></li>
+	<li><a href="http://www.rubyonrails.com">Ruby on Rails</a></li>
+	<li><a href="http://www.sqlite.org/">SQLite</a></li>
+	<li><a href="http://www.deveiate.org/projects/BlueCloth/">BlueCloth</a> (a ruby implementation of <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a>)</li>
+	<li><a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">ASCIIMathML</a></li>
+</ul>
+</p>
+
+<p>A lot of nifty elements (like the menu) are done with CSS using examples from the <a href="http://www.w3.org">w3.org</a> <a href="http://www.w3.org/Style/Examples/007/">tips-and-tricks</a> website.</p>

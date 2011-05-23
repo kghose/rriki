@@ -1,0 +1,69 @@
+<%#
+This partial displays a form for editing an existing source or creating a new one
+
+Input - 
+  :source - the source
+  :divid - the id of the div this partial is in
+  :creating - true if we are making a new source, false if editing
+%>
+
+<% if creating == true %>
+<% action = 'create' %>
+<% label = 'Create' %>
+<% else %>
+<% action = 'update' %>
+<% label = 'Update' %>
+<% end %>
+
+<div align="left">
+<%= link_to_remote 'Delete source', :url => { :action => "delete", :id => source},
+    :confirm => 'Are you sure?',
+    :html => {:title => 'Destroy source'} %>    
+</div>
+
+
+<% remote_form_for source, 
+        :url => {:controller => 'sources',
+                 :action => action, :id => source} do |f| %>
+
+<div align="right"><%= f.submit label %></div>
+
+<div class='source-form'>
+<%= f.label :citekey %> <%= f.text_field :citekey, :size => 15, :autocomplete => 'off' %> 
+<%#= f.label :filing_index %> <%#= f.text_field :filing_index, :size => 4 %> 
+<br/><%= f.label :title %> <%= f.text_field :title, :size => 75, :autocomplete => 'off' %>
+
+<br/>Notes
+<br/><%= f.text_area :body, :size => "70x20", :id => 'body'  %>
+<br/><%= f.label :abstract %>
+<br/><%= f.text_area :abstract, :size => "70x10" %></td>
+
+<br/>Type <%= select( :source, :source_type, Source::TYPES, :selected => source.source_type) %>
+<%= f.label :journal %> <%= f.text_field :journal %>
+<br/>
+    Vol <%= f.text_field :volume, :size => 4, :autocomplete => 'off' %>
+    No <%= f.text_field :number, :size => 4, :autocomplete => 'off' %>
+		Year <%= f.text_field :year, :size => 4, :autocomplete => 'off' %>
+    Month <%= select(:source, :month, Date::MONTHNAMES, :selected => source.month) %>
+		Pages <%= f.text_field :pages, :size => 8, :autocomplete => 'off' %>
+
+<br/>Authors<br/>
+<%= f.text_area :author, :size =>"40x5", :title => "Enter authors on separate lines. Last Name, First Name M.I" %></td>
+		
+<div id='book-source'><%= f.label :booktitle %> <%= f.text_field :booktitle, :size => 50 %>
+<br/><%= f.label :chapter %> <%= f.text_field :chapter, :size => 3 %>
+<%= f.label :edition %> <%= f.text_field :edition, :size => 4 %>
+<%= f.label :series %> <%= f.text_field :series %>
+<br/>Editors <%= f.text_area :editor, :size => "40x5" %>
+<br/><%= f.label :publisher %> <%= f.text_field :publisher %>
+<br/><%= f.label :address %>
+<br/><%= f.text_area :address, :size => "20x4" %>
+</div>
+
+<div id='thesis-source'><%= f.label :howpublished %> <%= f.text_field :howpublished, :size =>5 %>
+<%= f.label :institution %> <%= f.text_field :institution, :size => 20 %><br/>
+<%= f.label :organization %> <%= f.text_field :organization %>
+<%= f.label :school %> <%= f.text_field :school %><br/>
+<%= f.label :url %> <%= f.text_field :url %>
+</div>	
+<% end %>

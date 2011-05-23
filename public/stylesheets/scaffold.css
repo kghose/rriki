@@ -1,0 +1,180 @@
+body { background-color: #fff; color: #333;}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   10pt;
+  line-height: 1.4em;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.hkey {
+	margin-left: 1em;
+}
+
+.rriki-page {
+  position:absolute;
+	width: 100%;
+	height: 100%;
+  left: 0;
+  top: 0;	
+}
+
+.rriki-pane {
+  margin-left: .5cm;
+	margin-right: .25cm;
+}
+
+.key-pane {
+  float: left;
+	width: 20%;
+	height: 100%;
+	overflow: auto;
+}
+
+.key-pane a {
+  text-decoration:none;	
+}
+
+.list-pane {
+	float: left;
+  width: 30%;
+	height: 100%;
+	overflow: auto;
+	background-color:#ddd;
+}
+
+.item-pane {
+  float: left;
+  width: 50%;
+  height: 100%;
+  overflow: auto;	
+}
+
+#item-pane-menu {
+  //background-color:#ddd;	
+}
+
+/* The history ribbon we have on the item pane*/
+.historyselect {
+	//white-space:nowrap;
+	//height:4em;
+  //overflow-x:scroll;
+  //overflow-y:none;
+  font-size:70%;
+	width:200px;
+	background-color:#ddd;
+}
+
+/* This enables us to put a reader friendly link descriptor next to a link, that
+ * does not show up on screen but is visible for print.*/
+.item-link {
+	display:none;
+}
+
+.note-title {
+	font-weight:bold;
+	font-size:large;
+	
+}
+.note-menu {
+	float:right;
+  background-color:#ddd;	
+}
+.note-date {
+	font-size:smaller;
+}
+
+.source-citekey {
+	border:solid;
+	border-width:thin;
+	padding-left:.2em;
+	padding-right:.2em;
+}
+.source-title {
+	font-style:italic;
+}
+.source-authors {
+	font-weight:bold;
+}
+
+.source-journal {
+}
+
+.div-with-bar {
+	border-top:solid;
+	border-width:thin;
+}
+
+.source-form input {
+	border:hidden;
+  border-bottom:solid;
+	border-bottom-width:thin;
+	//border-width: 0px;
+	//background-color: #ddd;
+}
+
+.source-form textarea {
+	border:solid;
+	border-width:thin;
+  //background-color: #ddd;
+}
+
+textarea {
+  width: 100%;	
+}
+
+.keyword-text-field {
+  border-width: 0px;
+  background-color: #eee;
+  height: 1.3em;
+}
+
+.draggablekey {
+	font-weight: bold;
+	cursor: -moz-grab;
+}

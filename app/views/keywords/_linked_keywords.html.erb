@@ -1,0 +1,41 @@
+<%#
+This partial displays a list of the keywords linked to an item
+
+Input - 
+  :keys - an array of keywords
+  :item - the item these keywords belong to
+  :divid - the divid this sits in, so we can update the list of keywords
+%>
+Linked keywords
+<%= form_remote_tag :url => {:controller => 'keywords', 
+                             :action => "add_keyword", 
+                             :itemid => item,
+                             :itemtype => item.class.name,
+                             :divid => divid},
+            :update => divid %>
+  <%= text_field_with_auto_complete :keyword, :path_text, :autocomplete => "off",
+        :size => 50,  
+        :title => 'Enter new keyword path', 
+        :class => 'keyword-text-field' %>
+</form> 
+
+
+<% for key in keys do%>
+	<% thisdivid = "linkedkey#{key.id}" %>	
+	<div id='<%= thisdivid %>'>
+	<%= link_to_remote key.path_text, 
+	          :url => {:controller => 'rriki', 
+	                   :action => "items_with_keyword", :id => key},
+	          :update => 'list-div',
+	          :html => {:title => 'Show items linked to keyword'}%>
+  <%= link_to_remote 'x', 
+            :url => {:controller => 'keywords', 
+                     :action => "remove_keyword", 
+                     :id => key,
+                     :itemid => item,
+                     :itemtype => item.class.name,
+                     :divid => divid},
+            :update => divid,
+            :html => {:title => 'Remove this keyword'}%>						
+	</div>
+<% end %>

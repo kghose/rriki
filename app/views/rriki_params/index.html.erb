@@ -1,0 +1,20 @@
+<h1>Listing Parameters</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @rriki_params.each do |rriki_param| %>
+  <tr>
+  	<td><%= rriki_param.key %></td>
+    <td><%= rriki_param.value %></td>		
+    <td><%= link_to 'Show', rriki_param %></td>
+    <td><%= link_to 'Edit', edit_rriki_param_path(rriki_param) %></td>
+    <td><%= link_to 'Destroy', rriki_param, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New rriki_param', new_rriki_param_path %>

@@ -1,0 +1,10 @@
+<div class='diary-entry'>
+<h1>New entry</h1>
+<% form_for @entry do |f| %>
+	<%= render :partial => 'form', :locals => {:f => f} %>
+
+  <p>
+    <%= f.submit 'New' %>
+  </p>
+<% end %>
+</div>

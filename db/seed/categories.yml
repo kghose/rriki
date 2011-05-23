@@ -1,0 +1,5 @@
+desktop:
+ id: 1
+ name: Desktop
+ body: This is the desktop
+ node_id: 1

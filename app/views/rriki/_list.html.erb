@@ -1,0 +1,46 @@
+<%#
+This partial displays the current list of items
+
+Input - 
+  :key - the keyword this list is linked to
+  :notes - the list of notes found
+  :sources - the list of sources found
+  :search_text - an optional text, sent in if the list results from a search
+%>
+<% if key.nil? %>
+	<% if !defined? search_text %>
+	  <% title = 'Items with no keyword' %>
+	<% else %>
+	  <% title = "All items in database containing <b>#{search_text}</b>" %>
+	<% end %>
+<% else %>
+	<% title = "Items linked to <span id='currentparentpath'>#{key.parent_path_text}</span><span id='currentkey_#{key.id}' title='Drag me to a new parent' class='draggablekey'>#{key.name}</span> " %>		
+  <% if !defined? search_text %>		
+		<% title += (link_to_remote '(All)', 
+	          :url => {:controller => 'rriki', 
+	                   :action => "items_with_keyword_including_child_keywords", :id => key},
+	          :update => 'list-div',
+	          :html => {:title => 'Show all items linked to this keyword and its children'}) %>
+	<% else %>
+		<% title += "and containing <b>#{search_text}</b>"%>
+	<% end %>
+  <%# Some junk for drag and drop %>      
+  <%= draggable_element("currentkey_#{key.id}", :revert=>true, :ghosting=>true) %>
+	<%# ghosting true is required because we have divs with overflow:auto (http://dev.rubyonrails.org/ticket/5771)%>
+<% end %>
+<p class='list-title'><%= title %></p>
+
+<%= form_remote_tag :url => {:controller => 'rriki', 
+                             :action => 'search',
+                             :key_id => key ? key.id : nil },
+                    :method => :get,
+                    :update => 'list-div'%>
+ <%= text_field 'search', 'text',
+        #:size => 15,  
+        {:title => 'Search within items with this keyword',
+         :width => '100%'} %>
+</form>
+
+<%= render :partial => 'notes/list', :locals => {:notes => notes} %>
+
+<%= render :partial => 'sources/list', :locals => {:sources => sources} %>

@@ -1,0 +1,57 @@
+<%#
+This partial displays an expandable list of hierarchical keywords
+
+Inputs - 
+  :parent_key - parent key
+  :keys - an array of child keys
+%>
+
+<% if parent_key != nil %>
+<% parent_divid = "key_#{parent_key.id}" %>
+<% else %> 
+<% parent_divid = 'key-main'%>
+<% end %>
+
+<% if parent_key == nil %>
+<%= link_to_remote 'Unclassified', 
+          :url => {:controller => 'rriki', 
+                   :action => "items_with_no_keyword"},
+          :update => 'list-div',
+          :html => {:title => 'Show items with no keywords'}%>
+<div id='root-key'><i>Root</i></div>
+<%# Some junk for drag and drop %>      
+<%= drop_receiving_element('root-key',       # The id of the receiving element
+  :accept => "draggablekey",                # The CSS class of the dropped element
+  :with   => "'childid=' + (element.id.split('_').last()) + '&newparentid=-1'",     # The query string parameters
+  :url    => {:controller => 'keywords', :action=> 'move_keyword'}      # The action to call
+)%>
+<% end %>
+					
+<%= form_remote_tag :url => {:controller => 'keywords', :action => "add_child", :id => parent_key},
+    :update => parent_divid %>
+  <%= text_field "keyword", "name", 
+        :size => 5,  
+        :title => 'Enter new keyword', 
+        :class => 'keyword-text-field' %>
+	<%= link_to_remote '-', 
+        :url => {:controller => 'keywords', :action => "contract", :id => parent_key },
+        :update => parent_divid, 
+        :html => {:title => 'Collapse'} unless parent_key == nil %>
+</form> 
+
+<% for key in keys do%>
+	<% thisdivid = "thiskey_#{key.id}" %>
+	<% expanddivid = "key_#{key.id}" %>
+	
+	<div id='<%= thisdivid %>' style="display:inline;">
+  <%= render :partial => 'keywords/show_key', 
+        :locals => {:key => key, :parent_key => parent_key,
+                  :thisdivid => thisdivid,
+                  :parent_divid => parent_divid} %>
+	</div>
+  <%= link_to_remote '+', :url => {:controller => 'keywords', :action => "expand", :id => key},
+            :update => expanddivid, :html => {:title => 'Show children'} %>
+	
+  <div id='<%= expanddivid %>' class='hkey'>
+  </div>            
+<% end %>

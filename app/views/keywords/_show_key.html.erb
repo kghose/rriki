@@ -1,0 +1,28 @@
+<%#
+This partial displays controls on a given keyword
+
+Inputs - 
+  :key - the key we are editing
+  :thisdivid - the div id for this 
+  :parent_key - the parent of this key
+  :parent_divid - the div id for the parent
+%>
+<%= link_to_remote key.name, 
+          :url => {:controller => 'rriki', 
+                   :action => "items_with_keyword", :id => key},
+          :update => 'list-div',
+          :html => {:title => 'Show items linked to keyword'}%>					
+<%= link_to_remote 'e', 
+          :url => {:controller => 'keywords', 
+                   :action => "edit_key", :id => key,
+                   :parent_key => parent_key,
+                   :thisdivid => thisdivid,
+                   :parent_divid => parent_divid},
+          :update => thisdivid, :html => {:title => 'Edit keyword'} %>
+
+<%# Some junk for drag and drop %>			
+<%= drop_receiving_element(thisdivid,       # The id of the receiving element
+  :accept => "draggablekey",                # The CSS class of the dropped element
+  :with   => "'childid=' + (element.id.split('_').last()) + '&newparentid=#{key.id}'",     # The query string parameters
+  :url    => {:controller => 'keywords', :action=> 'move_keyword'}      # The action to call
+)%>

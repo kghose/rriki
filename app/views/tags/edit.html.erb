@@ -1,0 +1,12 @@
+<h1>Editing diary_tags</h1>
+
+<% form_for(@diary_tags) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @diary_tags %> |
+<%= link_to 'Back', diary_tags_path %>

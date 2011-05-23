@@ -1,0 +1,5 @@
+# nested mappings http://www.yaml.org/YAML_for_ruby.html
+mimetype:
+ jpg:
+  inline: true
+  

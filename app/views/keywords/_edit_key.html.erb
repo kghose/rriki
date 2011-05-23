@@ -1,0 +1,32 @@
+<%#
+This partial displays controls on a given keyword
+
+Inputs - 
+  :key - the key we are editing
+  :thisdivid - the div id for this 
+  :parent_key - the parent of this key
+  :parent_divid - the div id for the parent
+%>
+
+<% remote_form_for key, 
+  :update => thisdivid,
+  :url => {:controller => 'keywords', 
+           :action => "update", :id => key,
+           :parent_key => parent_key,
+           :thisdivid => thisdivid,
+           :parent_divid => parent_divid},
+  :html => {:style => 'display:inline;'} do |f| %>
+  <%= f.text_field :name, 
+                   :size => 5, 
+                   :title => 'Editing keyword', 
+                   :class => 'keyword-text-field' %>
+<% end %>
+
+<%= link_to_remote 'x', 
+     :url => {:controller => 'keywords', 
+              :action => "delete", :id => key, 
+              :parent_id => parent_key},
+          :update => parent_divid, 
+          :html => {:title => 'delete'},
+          :confirm => 'Delete keyword and all children?' %>
+

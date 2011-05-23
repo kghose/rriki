@@ -1,0 +1,16 @@
+<%#
+This partial displays information about our setup
+
+Input - 
+  none
+%>
+
+<p>
+You are running RRiki <b><%= RRIKI_VERSION %> (<%= RRIKI_RELEASE_DATE %>)</b> using Ruby version <b><%= RUBY_VERSION %></b>,
+Rails version <b><%= Rails::VERSION::STRING %></b>
+on a <b><%= RUBY_PLATFORM %></b> platform,
+with a <b><%=h Note.connection.adapter_name() %></b> database backend.<br/>
+You have <%= Note.count.to_s %> Notes, 
+<%= Source.count.to_s %> Sources
+and <%= Keyword.count.to_s %> Keywords in the database
+</p>

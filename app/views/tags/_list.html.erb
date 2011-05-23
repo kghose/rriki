@@ -1,0 +1,9 @@
+<% all_tags #tag helper, generates @tags, which is passed invisibly to list %>
+
+<%= link_to_remote 'NO TAG', :update => "main", 
+        :url => {:controller => 'tags', :action => 'get_entries_with_no_tag'} %>
+				
+<% @tags.each do |diary_tag| %>
+  <%= link_to_remote diary_tag.name, :update => "main", 
+        :url => tag_path(diary_tag), :method => :get %>
+<% end %>

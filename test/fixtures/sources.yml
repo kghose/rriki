@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  address: MyText
+  annote: MyText
+  author: MyText
+  booktitle: MyText
+  chapter: MyString
+  edition: MyText
+  editor: MyText
+  howpublished: MyText
+  institution: MyText
+  journal: MyString
+  month: MyString
+  number: MyString
+  organization: MyString
+  pages: MyString
+  publisher: MyString
+  school: MyString
+  series: MyString
+  title: MyString
+  type: MyString
+  url: MyString
+  volume: MyString
+  year: 1
+  item: 
+
+two:
+  address: MyText
+  annote: MyText
+  author: MyText
+  booktitle: MyText
+  chapter: MyString
+  edition: MyText
+  editor: MyText
+  howpublished: MyText
+  institution: MyText
+  journal: MyString
+  month: MyString
+  number: MyString
+  organization: MyString
+  pages: MyString
+  publisher: MyString
+  school: MyString
+  series: MyString
+  title: MyString
+  type: MyString
+  url: MyString
+  volume: MyString
+  year: 1
+  item: 

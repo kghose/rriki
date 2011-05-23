@@ -1,0 +1,51 @@
+body { 
+  background-color: #fff; 
+	color: #333;
+  font-family:"Century Gothic";	
+}
+
+body, p, ol, ul, td {
+	font-size:   13px;
+  line-height: 18px;
+}
+
+/*Allows the text are to span the entire div neatly*/
+textarea {
+  width: 100%;
+}
+
+.diary-year {
+	float:left;
+	display:block;
+  font-size: 6em;
+	font-weight: bold;
+	font-family:"Century Gothic";
+	color: black;
+  -moz-transform: rotate(-90deg);
+	left:1cm;
+}
+
+.diary-entry {
+	background-color:#5ff;
+	border:thin;
+	border-style:solid;
+	-moz-border-radius: 1em;
+	padding-left:2em;
+	padding-right:2em;
+	padding-top:.1em;
+	padding-bottom:.1em;
+  margin-left: 4cm;	
+	margin-bottom:2em;
+  width: 10cm;	
+}
+
+.diary-title {
+	width: 100%;
+	font-size:large;
+	font-weight: bold;
+}
+
+.diary-date {
+  font-weight: normal;
+	font-size: .8em;
+}

@@ -1,0 +1,37 @@
+<%#
+This partial displays a note
+
+Input - 
+  :note - the note
+  :divid - the id of the div this partial is in
+%>
+
+<span class='source-citekey'><%= "Note#{note.id}" %></span>
+<span class='note-title'><%= note.title %></span>
+<div class='note-menu noprint'>
+<%= link_to_remote 'edit', :url => {:action => "edit", :id => note, :divid => divid},
+          :method => :get,
+          :update => divid, 
+          :html => {:title => 'Edit note'} %>
+
+<%= link_to 'BibTeX', 
+          {:action => "save_citations_as_bibtex", :id => note},
+          {:title => "Find all citations in the current note and export them to BibTeX format. Use your browser's 'save link as...' function to save to a location and file name of your choice."}  %>
+
+<%= link_to 'RIS', 
+          {:action => "save_citations_as_RIS", :id => note},
+          {:title => "Find all citations in the current note and export them to RIS format that can be read by, among others, the EndNote program. Use your browser's 'save link as...' function to save to a location and file name of your choice."}  %>
+      
+<%= link_to 'Word XML', 
+          {:action => "save_citations_as_word_xml", :id => note},
+          {:title => "Find all citations in the current note and export them to MS Word's XML citation format. This is completely experimental and will probbaly casuse mysterious and annoying problems. Use your browser's 'save link as...' function to save to a location and file name of your choice."}  %>
+</div>
+<div class='note-date'><%= note.date.to_s %></div>
+
+<div id='item-body'><%= body_html(note) %></div>
+
+<div class='noprint'>
+<%= link_to_remote 'edit', :url => { :action => "edit", :id => note, :divid => divid},
+          :method => :get,
+          :update => divid, 
+          :html => {:title => 'Edit note'} %></div>

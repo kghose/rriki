@@ -1,0 +1,24 @@
+<%#= render :partial => 'month_year_select', 
+      :locals => {:year => @year, :month => @month}%>
+
+<div class='diary-entry'>
+<div align='left'><%= link_to 'Write an entry', :action => 'new' %></div>
+<div align='right'><%= link_to 'Back to work', :controller => 'rriki', :action => 'index' %></div>
+</div>
+
+
+<% for year in @entries.keys %>
+  <p class='diary-year'><%= year %></p>
+	<% for entry in @entries[year] %>
+	  <a name="entry<%= entry.id %>"></a>
+	  <div class='diary-entry'>
+		  <p class='diary-title'>
+		  	<span class='diary-date'><%= pretty_date entry.date %></span><br/>
+				<%= entry.title %>
+			</p>
+			<%= body_html(entry) %>
+			<p align='right'><%= link_to 'Edit', :action => 'edit', :id => entry %></p>
+		</div>
+	<% end %>
+<% end %>
+	

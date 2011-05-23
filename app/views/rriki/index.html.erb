@@ -1,0 +1,76 @@
+<div class='rriki-page'>
+<div class='key-pane'>
+	<div  class='rriki-pane'>
+	<table>
+		<tr>
+    <td><%= link_to_remote image_tag('rriki-logo-sm.png', :border => 0),
+              :url => {:action => 'about'} %></td>
+    <td><%= link_to 'Diary',
+                 :controller => 'entries', 
+                 :action => 'index' %>							
+		<td><%= link_to_remote 'Info/Help', 
+		          :url => {:controller => 'rriki', 
+		                   :action => 'infohelp'} %>
+		</td>
+	  </tr>
+	</table>
+<%= form_remote_tag :url => {:controller => 'rriki', 
+                             :action => 'search'},
+                    :method => :get,
+                    :update => 'list-div'%>
+ <%= text_field 'search', 'text',
+        #:size => 15,  
+        {:title => 'Search whole database',
+         :width => '100%'} %>
+</form>
+	
+  </div>
+	<div id='key-main' class='rriki-pane'>
+    <%= render :partial => 'keywords/list', :locals => {:parent_key => nil, :keys => @keys}%>		
+	</div>
+</div>
+<div class='list-pane'>
+	<div id='list-div' class='rriki-pane'>
+	 <%= render :partial => 'info' %>
+	</div>
+</div>
+<div class='item-pane'>
+	<div class='rriki-pane noprint'>
+  <table id="item-pane-menu">
+    <tr>
+    <td><%= link_to_remote 'New note', 
+              :url => {:controller => 'notes', 
+                       :action => 'new', :divid => 'item-div'},
+              :method => :get %>              
+    </td>
+	  <td><%= link_to_remote 'New source', 
+              :url => {:controller => 'sources',  
+                       :action => 'new', :divid => 'item-div'},
+              :method => :get %>
+    </td>
+    <td><%= form_remote_tag :url => {:controller => 'sources', 
+                            :action => 'new_from_pmid', :divid => 'item-div'} %>
+        <%= text_field 'pmid', 'value', 
+        :size => 10,  
+        :title => 'Given pubmed id(s), fetch the appropriate record(s) from PubMed and set up a new source entry. If there is only one pubmed id the entry is not created in the database until you hit "create". If there are several ids then the records are silently retrieved and inserted into the database.<br/>
+You can locate the pubmed id by first doing a search on pubmed and locating the relevant record.<br />
+To grab several sources, do a search on pubmed, add the relvant papers to your pubmed clipboard, then go to the clipboard, select format "UI list" and then send to "text". Copy the uis which are displayed as plaintext and paste them into this box and click get.', 
+        :class => 'keyword-text-field' %>
+      </form>
+     </td>
+		 <td>
+		 	  <div id="history" title='History: list of viewed items.'>
+        </div>  
+		 </td>
+    </tr>
+  </table>
+	</div>
+	
+	<div class='rriki-pane'>
+    <div id='item-div'>
+    </div>
+    <div id='item-keyword-div' class='div-with-bar noprint'>
+    </div>
+	</div>
+</div>
+</div>

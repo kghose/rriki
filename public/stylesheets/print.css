@@ -1,0 +1,60 @@
+/*
+#   RRiki is a notes and citations management software
+#   Copyright (C) 2009 - Kaushik Ghose - kaushik.ghose@gmail.com
+#
+#    This file is part of RRiki.
+#
+#    RRiki is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    RRiki is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with RRiki; if not, write to the Free Software
+#    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+@import url(scaffold.css);/* remember, the print stylesheet starts afresh - it doesn't know about the regular stylesheet*/
+
+body { 
+padding-top: 0.4cm;
+padding-bottom: 0.4cm;
+padding-left: 1.5cm;
+padding-right: 1cm;
+}
+
+.key-pane {
+	width:0%;
+}
+
+.list-pane {
+	width:0%;
+}
+
+.item-pane {	
+  width:100%;	
+}
+
+.noprint {
+	display:none;
+}
+
+/* This enables us to put a reader friendly link descriptor next to a link, that
+ * does not show up on screen but is visible for print.*/
+.item-link {
+  text-decoration: underline;
+  display:inline;
+	font-size:70%
+}
+
+/* http://www.alistapart.com/stories/goingtoprint/ */
+a:link:after, a:visited:after {
+   text-decoration: underline;
+   content: " (" attr(title) ") ";
+   font-size: 70%;
+}

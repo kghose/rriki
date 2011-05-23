@@ -1,0 +1,8 @@
+<%#
+Uses the list partial to display the root keywords
+
+Expects @keys which is  alist of root keywords
+%>
+<div id = 'key-main'>
+<%= render :partial => 'list', :locals => {:parent_key => nil, :keys => @keys}%>
+</div>

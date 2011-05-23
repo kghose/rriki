@@ -1,0 +1,48 @@
+<%#
+This partial displays a form for editing an existing note or creating a new one
+
+Input - 
+  :note - the note
+  :divid - the id of the div this partial is in
+  :creating - true if we are making a new note, false if editing
+%>
+
+<% if creating == true %>
+<% action = 'create' %>
+<% label = 'Create' %>
+<% else %>
+<% action = 'update' %>
+<% label = 'Update' %>
+<% end %>
+
+<h1>Note</h1>
+<% if creating != true %>
+<%= link_to_remote 'Delete', 
+          :url => {:controller => 'notes',
+                   :action => "destroy", :id => note},
+          :method => :delete,
+          :html => {:title => 'delete'},
+          :confirm => 'Delete note?' %>
+<% end %>
+
+<% remote_form_for note, 
+        :url => {:controller => 'notes',
+                 :action => action, :id => note} do |f| %>
+				
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title, :autocomplete => 'off' %>
+  </p>
+	<p>
+    <%= f.label :date %>		
+		<%= calendar_date_select_tag "note[date]", note.date.to_s, :time => true %>
+	</p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :size => "70x20", :id => "#{divid}-body" %>
+  </p>
+
+  <p>
+    <%= f.submit label %>
+  </p>
+<% end %>

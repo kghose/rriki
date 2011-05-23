@@ -1,0 +1,16 @@
+<table width=100%>
+  <tr>
+  </tr>
+
+  <% for source in sources do %>
+  <tr id='<%= "div-source#{source.id}" %>'>
+    <td id='<%= "title-source#{source.id}" %>'>
+    	(<b><%= link_to_remote source.citekey, 
+                  :url => {:controller => 'sources', 
+                           :action => 'show', :id => source, 
+                           :divid => 'item-div'},
+                  :html => {:title => "Show source:#{source.citekey}"},
+                  :method => :get %></b>) <%= source.title %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,13 @@
+<%#
+This partial displays autocomplete information. We had to do this because
+something is broken in the supplied macros (auto_complete_for :keyword, :path_text)
+
+Inputs - 
+  :keys - the keys suggested for autocompletion
+%>
+
+<ul>
+	<% for key in keys %>
+	<li><%=h key.path_text %></li>
+	<% end %>
+</ul>

@@ -1,0 +1,17 @@
+<%#
+This partial displays a form for editing an existing entry or creating a new one
+the form object is 'f', entry object is @entry
+%>
+
+<p>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :date %>    
+  <%= calendar_date_select_tag "entry[date]", @entry.date.to_s, :time => true %>
+</p>
+<p>
+  <%= f.label :body %><br />
+  <%= f.text_area :body, :size => '40x25' %>
+</p>

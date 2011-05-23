@@ -1,0 +1,11 @@
+<h1>New diary_tags</h1>
+
+<% form_for(@diary_tags) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', diary_tags_path %>
